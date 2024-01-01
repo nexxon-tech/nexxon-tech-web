@@ -30,6 +30,7 @@ const PopupModel = (props: Props) => {
     phone: "",
     text: "",
   });
+  const [isQueryLoading, setIsQueryLoading] = useState<boolean>(false);
 
   const webMailHandler = async () => {
     if (
@@ -38,6 +39,7 @@ const PopupModel = (props: Props) => {
       messageInfo.phone &&
       messageInfo.text
     ) {
+      setIsQueryLoading(true);
       let formData = new FormData();
       const myHeaders = new Headers();
       myHeaders.append(
@@ -52,15 +54,17 @@ const PopupModel = (props: Props) => {
 
       let res = await fetch("api/mail", {
         method: "POST",
-        // headers: myHeaders,
         body: formData,
       });
       if (res.status > 300) {
-        toast.warning(res.statusText);
+        toast.warning("Server Error 😥");
       } else {
-        toast.success(res.statusText);
+        toast.success(
+          "Your Query submitted successfully, we will contact you shortly 😊",
+        );
         onClose();
       }
+      setIsQueryLoading(false);
     } else {
       toast.warning("Please fill all details");
     }
@@ -166,6 +170,7 @@ const PopupModel = (props: Props) => {
                       radius="sm"
                       className="rounded-md bg-black px-8 py-4 text-base  text-white duration-300 ease-in-out hover:bg-black/90 dark:bg-white/10 dark:text-white dark:hover:bg-white/5"
                       onClick={() => webMailHandler()}
+                      isLoading={isQueryLoading}
                     >
                       Submit
                     </Button>
