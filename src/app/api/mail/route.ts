@@ -5,10 +5,6 @@ type ResponseData = {
   message: string;
 };
 
-const mailFn = async () => {
-  console.log("Message sent: Hello", info.messageId);
-};
-
 export async function POST(request: Request) {
   let formData = await request.formData();
   if (
@@ -36,10 +32,10 @@ export async function POST(request: Request) {
       subject: "Project Discussion ✔", // Subject line
       //   text: "Project Discussion", // plain text body
       html: `<ul>
-      <li>Name: ${name}</li>
-      <li>Email: ${email}</li>
-      <li>phone: ${phone}</li>
-      <li>message:</li>
+      <li><strong>Name:</strong> ${name}</li>
+      <li><strong>Email:</strong> ${email}</li>
+      <li><strong>phone:</strong> ${phone}</li>
+      <li><strong>message: ⤵</strong></li>
       <p>${text}</p>
     </ul>`,
     });
