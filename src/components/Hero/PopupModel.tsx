@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Poppins } from "next/font/google";
 import {
   Modal,
@@ -13,6 +13,7 @@ import {
   Textarea,
 } from "@nextui-org/react";
 import Image from "next/image";
+import { toast } from "react-toastify";
 
 type Props = {};
 
@@ -22,7 +23,45 @@ const poppins = Poppins({
 });
 
 const PopupModel = (props: Props) => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+  const [messageInfo, setMessageInfo] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    text: "",
+  });
+
+  const webMailHandler = async () => {
+    if (
+      messageInfo.name &&
+      messageInfo.email &&
+      messageInfo.phone &&
+      messageInfo.text
+    ) {
+      let formData = new FormData();
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "multipart/form-data");
+
+      formData.append("name", messageInfo.name);
+      formData.append("email", messageInfo.email);
+      formData.append("phone", messageInfo.phone);
+      formData.append("text", messageInfo.text);
+
+      let res = await fetch("api/mail", {
+        method: "POST",
+        headers: myHeaders,
+        body: formData,
+      });
+      if (res.status > 300) {
+        toast.warning(res.statusText);
+      } else {
+        toast.success(res.statusText);
+        onClose();
+      }
+    } else {
+      toast.warning("Please fill all details");
+    }
+  };
 
   return (
     <>
@@ -77,12 +116,22 @@ const PopupModel = (props: Props) => {
                       size="md"
                       type="text"
                       label="Your Name"
+                      onChange={(e) =>
+                        setMessageInfo((old) => {
+                          return { ...old, name: e.target.value };
+                        })
+                      }
                     />
                     <Input
                       variant="underlined"
                       size="md"
                       type="email"
                       label="Business Email"
+                      onChange={(e) =>
+                        setMessageInfo((old) => {
+                          return { ...old, email: e.target.value };
+                        })
+                      }
                     />
                     <Input
                       isRequired
@@ -90,6 +139,11 @@ const PopupModel = (props: Props) => {
                       size="md"
                       type="number"
                       label="Phone Number"
+                      onChange={(e) =>
+                        setMessageInfo((old) => {
+                          return { ...old, phone: e.target.value };
+                        })
+                      }
                     />
                     <Textarea
                       isRequired
@@ -98,11 +152,17 @@ const PopupModel = (props: Props) => {
                       type="text"
                       maxRows={4}
                       label="About Project"
+                      onChange={(e) =>
+                        setMessageInfo((old) => {
+                          return { ...old, text: e.target.value };
+                        })
+                      }
                     />
                     <Button
                       size="md"
                       radius="sm"
                       className="rounded-md bg-black px-8 py-4 text-base  text-white duration-300 ease-in-out hover:bg-black/90 dark:bg-white/10 dark:text-white dark:hover:bg-white/5"
+                      onClick={() => webMailHandler()}
                     >
                       Submit
                     </Button>
