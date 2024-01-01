@@ -59,6 +59,18 @@ const AboutSectionOne = () => {
                 data-wow-delay=".2s"
               >
                 <Image
+                  src="/images/about/about-1-image-light.png"
+                  alt="Website development and App Development ReactJs, NextJs, Android, Flutter, NodeJS"
+                  fill
+                  className="mx-auto max-w-full drop-shadow-three dark:hidden dark:drop-shadow-none lg:mr-0"
+                />
+                <Image
+                  src="/images/about/about-1-image-dark.png"
+                  alt="Website development and App Development ReactJs, NextJs, Android, Flutter, NodeJS"
+                  fill
+                  className="mx-auto hidden max-w-full drop-shadow-three dark:block dark:drop-shadow-none lg:mr-0"
+                />
+                {/* <Image
                   src="/images/about/about-image.svg"
                   alt="about-image"
                   fill
@@ -69,7 +81,7 @@ const AboutSectionOne = () => {
                   alt="about-image"
                   fill
                   className="mx-auto hidden max-w-full drop-shadow-three dark:block dark:drop-shadow-none lg:mr-0"
-                />
+                /> */}
               </div>
             </div>
           </div>
