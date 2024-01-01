@@ -40,7 +40,10 @@ const PopupModel = (props: Props) => {
     ) {
       let formData = new FormData();
       const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "multipart/form-data");
+      myHeaders.append(
+        "Content-Type",
+        "multipart/form-data; boundary=<calculated when request is sent>",
+      );
 
       formData.append("name", messageInfo.name);
       formData.append("email", messageInfo.email);
@@ -49,7 +52,7 @@ const PopupModel = (props: Props) => {
 
       let res = await fetch("api/mail", {
         method: "POST",
-        headers: myHeaders,
+        // headers: myHeaders,
         body: formData,
       });
       if (res.status > 300) {
