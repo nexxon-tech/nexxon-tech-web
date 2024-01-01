@@ -15,7 +15,10 @@ export const metadata: Metadata = {
   title: "Home | NexxonTech",
   description:
     "Custom Web Application Development Company - Mobile App & Web Development Services Company",
-  //   other metadata
+  icons: {
+    icon: "https://nexxontech.com/images/favicon.png",
+    apple: "https://nexxontech.com/images/favicon.png",
+  },
 };
 
 export default function Home() {

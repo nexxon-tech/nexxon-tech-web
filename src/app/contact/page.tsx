@@ -5,9 +5,14 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Contact Page | NexxonTech",
-  description: "Custom Web Application Development Company - Mobile App & Web Development Services Company",
-  // other metadata
+  description:
+    "Custom Web Application Development Company - Mobile App & Web Development Services Company",
+  icons: {
+    icon: "https://nexxontech.com/images/favicon.png",
+    apple: "https://nexxontech.com/images/favicon.png",
+  },
 };
+
 
 const ContactPage = () => {
   return (

@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://nexxontech.com/privacy-policy",
   },
+  icons: {
+    icon: "https://nexxontech.com/images/favicon.png",
+    apple: "https://nexxontech.com/images/favicon.png",
+  },
 };
 
 const PrivacyPolicy = (props: Props) => {
