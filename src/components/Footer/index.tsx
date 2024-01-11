@@ -235,10 +235,10 @@ const Footer = () => {
                         ,&nbsp;
                         <br className="md:hidden" />
                         <a
-                          href="tel:+919580809620"
+                          href="tel:+919235250542"
                           className="text-nowrap text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                         >
-                          +91-9580809620
+                          +91-9235250542
                         </a>
                       </p>
                     </span>

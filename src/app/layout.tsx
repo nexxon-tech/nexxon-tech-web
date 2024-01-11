@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
 import { Inter } from "next/font/google";
 import { ToastContainer } from "react-toastify";
+import { Providers } from "./providers";
 import "react-toastify/dist/ReactToastify.css";
 import "node_modules/react-modal-video/css/modal-video.css";
 import "../styles/index.css";
@@ -28,6 +29,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-import { Providers } from "./providers";
-import Head from "next/head";
